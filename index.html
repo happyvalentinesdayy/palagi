@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, noodp, noarchive, noimageindex" />
+    <link rel="stylesheet" href="https://use.typekit.net/uvr0oat.css" />
+    <link rel="stylesheet" href="main.css" />
+    <title>Palagi</title>
+  </head>
+
+  <body id="grain">
+    <h1 class="title">Will you marry me?</h1>
+    <div class="img-hanger">
+      <img src="IMG_9634.jpg" alt="">
+    </div>
+    <div class="flower">
+      <div class="f-wrapper">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div
+            class="flower__leaf flower__leaf--8 flower__fall-down--yellow"
+          ></div>
+        </div>
+      </div>
+
+      <div class="f-wrapper f-wrapper--2">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div
+            class="flower__leaf flower__leaf--8 flower__fall-down--pink"
+          ></div>
+        </div>
+      </div>
+
+      <div class="f-wrapper f-wrapper--3">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div
+            class="flower__leaf flower__leaf--8 flower__fall-down--purple"
+          ></div>
+        </div>
+      </div>
+      <div class="flower__glass"></div>
+    </div>
+
+    <audio id="backgroundMusic" loop autoplay>
+      <source src="darondo.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/grained@0.0.2/grained.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var music = document.getElementById("backgroundMusic");
+
+        // Set the initial volume to 0
+        music.volume = 0;
+
+        // Gradually increase the volume over a period (adjust duration as needed)
+        var fadeDuration = 3000; // 3 seconds
+        var currentTime = music.currentTime; // Remember the current time
+        var startTime = performance.now(); // Record the start time
+
+        function updateVolume() {
+          var elapsedTime = performance.now() - startTime;
+          var progress = elapsedTime / fadeDuration;
+
+          if (progress < 1) {
+            music.volume = progress;
+            requestAnimationFrame(updateVolume);
+          } else {
+            music.volume = 1; // Ensure the final volume is set
+          }
+        }
+
+        // Start the volume fade-in
+        updateVolume();
+
+        // Set the time (in seconds) where you want the snippet to start
+        music.currentTime = currentTime;
+      });
+
+      var options = {
+        animate: true,
+        patternWidth: 100,
+        patternHeight: 100,
+        grainOpacity: 0.05,
+        grainDensity: 1,
+        grainWidth: 1,
+        grainHeight: 1,
+      };
+
+      grained("#grain", options);
+    </script>
+  </body>
+</html>
